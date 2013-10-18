@@ -1,37 +1,112 @@
 <Body:>
-  <div class="row">
-    <form class="span3" x-bind="submit: list.add">
-      <h3>Add item</h3>
-      <fieldset>
-        <label>Name</label>
-        <input type="text" value={_page.newItem.name}>
-        <label>Note</label>
-        <textarea>{_page.newItem.note}</textarea>
-        <div>
-          <button type="submit" class="btn">Add</button>
-        </div>
-      </fieldset>
-      <div class="well visits">
-        <b>Fun fact:</b> You've visited the list {_page.user.visits} times.
+  <form x-bind="submit: list.add">
+    <h3>Add item</h3>
+    <div class="row">
+      <div class="span3">
+
+        <fieldset>
+          <legend>Initial</legend>
+          <label>Initial cash</label>
+          <input type="text" value={_page.newItem.initial.cash}>
+          <label>Initial incomes</label>
+          <input type="text" value={_page.newItem.initial.incomes}>
+          <label>Initial outcomes</label>
+          <input type="text" value={_page.newItem.initial.outcomes}>
+          <label>Initial balance</label>
+          <input disabled type="text" value={_page.newItem.totals.initialBalance}>
+        </fieldset>
+        <fieldset>
+          <legend>Daily sales</legend>
+          <label>Start bill</label>
+          <input type="text" value={_page.newItem.sales.startBill}>
+          <label>End bill</label>
+          <input type="text" value={_page.newItem.sales.endBill}>
+          <label>Sales amount</label>
+          <input type="text" value={_page.newItem.sales.amount}>
+        </fieldset>
       </div>
-    </form>
-    <div class="span8 offset1">
+      <div class="span3">
+
+        <fieldset>
+          <legend>Daily outcomes</legend>
+          <label>Waybills</label>
+          <input type="text" value={_page.newItem.dailyOutcomes.waybills}>
+          <label>Invoices</label>
+          <input type="text" value={_page.newItem.dailyOutcomes.invoices}>
+          <label>With bill</label>
+          <input type="text" value={_page.newItem.dailyOutcomes.withBill}>
+          <label>Without bill</label>
+          <input type="text" value={_page.newItem.dailyOutcomes.withoutBill}>
+          <label>Shifts</label>
+          <input type="text" value={_page.newItem.dailyOutcomes.shifts}>
+          <label>Total</label>
+          <input disabled type="text" value={_page.newItem.totals.dailyOutcomes}>
+        </fieldset>
+      </div>
+      <div class="span3">
+        <fieldset>
+          <legend>Daily balance</legend>
+          <label>Theoretical</label>
+          <input disabled type="text" value={_page.newItem.balance.theoretical}>
+          <label>Cash</label>
+          <input type="text" value={_page.newItem.balance.cash}>
+          <label>Delta</label>
+          <input disabled type="text" value={_page.newItem.totals.balanceDelta}>
+          <label>Card payments</label>
+          <input type="text" value={_page.newItem.balance.cardPayments}>
+          <label>Total</label>
+          <input disabled type="text" value={_page.newItem.totals.balance}>
+        </fieldset>
+        <fieldset>
+          <legend>Taxes</legend>
+          <label>IVA</label>
+          <input disabled type="text" value={_page.newItem.taxes.IVA}>
+          <label>IVA (round)</label>
+          <input type="text" value={_page.newItem.taxes.IVARound}>
+          <label>Net</label>
+          <input type="text" value={_page.newItem.totals.net}>
+        </fieldset>
+      </div>
+      <div class="span3">
+        <fieldset>
+          <legend>Finish</legend>
+          <label>Withdrawal</label>
+          <input type="text" value={_page.newItem.finish.withdrawal}>
+          <label>Cash</label>
+          <input disabled type="text" value={_page.newItem.totals.finish}>
+          <label>Comment</label>
+          <textarea>{_page.newItem.note}</textarea>
+        </fieldset>
+        <div>
+          <hr>
+          <button type="submit" class="btn btn-large btn-block btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="span12">
       <table class="table">
         <thead>
           <tr>
-            <th>Item</th>
-            <th>Note</th>
+            <th>Date</th>
+            <th>Finish</th>
+            <th>Comment</th>
           </tr>
         </thead>
         <tbody>
           {#each _page.items as :item}
             <tr>
-              <td>{{:item.name}}</td>
+              <td>{{:item.date}}</td>
+              <td>{{:item.totals.finish}}</td>
               <td>{{:item.note}}</td>
               <td><button class="btn" x-bind="click: list.remove">Remove</button></td>
             </tr>
           {/}
         </tbody>
       </table>
+      <div class="well visits">
+        <b>Fun fact:</b> You've visited the list {_page.user.visits} times.
+      </div>
     </div>
   </div>
