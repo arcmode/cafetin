@@ -3,7 +3,12 @@ exports.add = function(e, el) {
   var newItem = this.model.del('new');
   if (!newItem) return;
   newItem.userId = this.model.parent(2).get('_session.userId');
-  newItem.date = Date.now();
+  newItem.date = new Date();
+  newItem.id = [
+    String(newItem.date.getDate()),
+    String(newItem.date.getMonth() + 1),
+    String(1900 + newItem.date.getYear())
+  ].join('-');
   this.model.parent(2).add('items', newItem);
 };
 
