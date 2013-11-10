@@ -1,5 +1,6 @@
 <import: src="./home">
-<import: src="./day">
+<import: src="./days">
+<import: src="./today">
 
 <!--
   Derby templates are similar to Handlebars, except that they are first
@@ -30,15 +31,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Cafetín</a>
+        <a class="navbar-brand" href="#"></i>Cafetín</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-          <app:navLink title="Home" href="/">
-          <app:navLink title="Day" href="/day">
-        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Help</a></li>
           <li class="dropdown">
@@ -60,13 +57,13 @@
         <div class="col-md-2">
           <div role="complementary">
             <ul class="nav sidebar">
-              {#each _page.sidebar.day as :link}
-                <app:navLink title="{{:link.title}}" href="{{:link.url}}">
-              {/}
+              <app:navLink title="Home" href="/">
+              <app:navLink title="Days" href="/days">
+              <app:navLink title="Today" href="/days/today">
             </ul>
           </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 main">
 
 <Footer:>
         </div>
